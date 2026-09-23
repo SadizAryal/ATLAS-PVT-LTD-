@@ -3,7 +3,7 @@ export const CONFIG = {
   COMPANY: 'Atlas Labs',
   CLIENT: 'Colab Warehouse',
   PANO: {
-    SRC: '/warehouse-panorama.png',
+    SRC: '/warehouse-panorama.jpg',
     TYPE: 'equirectangular',
     INITIAL_YAW: 0,
     INITIAL_PITCH: 0,
