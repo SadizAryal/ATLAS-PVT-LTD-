@@ -3,7 +3,7 @@ export const CONFIG = {
   COMPANY: 'Atlas Labs',
   CLIENT: 'Colab Warehouse',
   PANO: {
-    SRC: 'https://pannellum.org/images/alma.jpg',
+    SRC: '/warehouse-panorama.png',
     TYPE: 'equirectangular',
     INITIAL_YAW: 0,
     INITIAL_PITCH: 0,
