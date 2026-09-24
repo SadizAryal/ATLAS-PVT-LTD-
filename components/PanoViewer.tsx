@@ -25,14 +25,8 @@ export default function PanoViewer({ onOpen, onReady }: Props) {
     initialized.current = false
   }, [])
   function resizeViewer() {
-    const container = ref.current
-    if (!container) return
-    viewer.current?.resize()
-    const canvas = container.querySelector('canvas')
-    if (canvas) {
-      canvas.style.width = `${container.clientWidth}px`
-      canvas.style.height = `${container.clientHeight}px`
-    }
+    if (!ref.current || !viewer.current) return
+    viewer.current.resize()
   }
   function init() {
     const pannellum = (window as Window & { pannellum?: { viewer: (el: HTMLDivElement, opts: Record<string, unknown>) => Viewer } }).pannellum
