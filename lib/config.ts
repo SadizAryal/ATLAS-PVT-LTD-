@@ -40,10 +40,6 @@ export const QUIZ = [
   { question: 'Where must you walk near forklifts?', answer: 'On the marked walkway.', options: ['Between the pallets.', 'On the marked walkway.', 'Behind the forklift.', 'Anywhere you can see.'], reason: 'The marked walkway keeps people away from moving vehicles.' },
   { question: 'What must you wear before you enter the floor?', answer: 'Hi-vis vest, safety boots, and gloves.', options: ['A cap and trainers.', 'Hi-vis vest, safety boots, and gloves.', 'A coat only.', 'No special clothing.'], reason: 'These items help protect you and help drivers see you.' },
   { question: 'What do you do if a fire exit is blocked?', answer: 'Tell a manager now.', options: ['Move the boxes alone.', 'Use the blocked exit.', 'Tell a manager now.', 'Ignore it.'], reason: 'A manager must clear the exit so everyone can leave safely.' },
-  { question: 'What do you do before you walk near a forklift?', answer: 'Wait until the driver sees you.', options: ['Walk quickly past it.', 'Wait until the driver sees you.', 'Tap the forklift to warn.', 'Walk close behind it.'], reason: 'Drivers cannot see directly behind the vehicle.' },
-  { question: 'Your gloves are torn. What do you do?', answer: 'Get a new pair before work.', options: ['Wear them anyway.', 'Get a new pair before work.', 'Tape them up.', 'Borrow a dirty pair.'], reason: 'Torn gloves do not protect your hands.' },
-  { question: 'Where must boxes never sit?', answer: 'In front of a fire exit.', options: ['On the shelf.', 'In front of a fire exit.', 'In the bin area.', 'On a pallet.'], reason: 'A blocked exit traps people in a fire.' },
-  { question: 'You see a spill on the floor. What do you do first?', answer: 'Warn others, then tell a manager.', options: ['Walk around it.', 'Warn others, then tell a manager.', 'Wipe it with paper towels.', 'Wait for someone else.'], reason: 'Others can slip before it gets cleaned.' },
 ] as const
 
 export type StoreAction = Partial<DemoState> | { type: 'viewHotspot'; id: string } | { type: 'pass'; score: number }
