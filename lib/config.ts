@@ -45,7 +45,6 @@ export const QUIZ = [
   { question: 'A box feels over 20kg. How do you lift it?', answer: 'Bend knees, load close, ask for help.', options: ['Bend your back and jerk it up.', 'Bend knees, load close, ask for help.', 'Drag it across the floor.', 'Get a forklift to lift it.'], reason: 'Knees bent and load close protects your back. Heavy loads need two people.', hotspot: 'manual' },
   { question: 'You see a spill on the floor. What do you do first?', answer: 'Warn others, then tell a manager.', options: ['Walk around it.', 'Warn others, then tell a manager.', 'Wipe it with paper towels.', 'Wait for someone else.'], reason: 'Others can slip before it gets cleaned.', hotspot: 'spill' },
 ] as const
-] as const
 
 export const OPEN_QUESTION = {
   hotspot: 'exit',
