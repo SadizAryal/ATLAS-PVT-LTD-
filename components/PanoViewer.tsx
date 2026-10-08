@@ -5,10 +5,11 @@ import Script from 'next/script'
 import { Minus, Move, Plus } from 'lucide-react'
 import { CONFIG, Hotspot } from '@/lib/config'
 
-type Props = { onOpen: (hotspot: Hotspot) => void; onReady?: (api: { lookAt: (yaw: number, pitch: number) => void }) => void }
+type Props = { onOpen: (hotspot: Hotspot) => void; onReady?: (api: { lookAt: (yaw: number, pitch: number) => void }) => void; spots?: Hotspot[] }
 type Viewer = { lookAt: (pitch: number, yaw: number, hfov?: number) => void; getYaw: () => number; getPitch: () => number; getHfov: () => number; resize: () => void; destroy: () => void }
 
-export default function PanoViewer({ onOpen, onReady }: Props) {
+export default function PanoViewer({ onOpen, onReady, spots }: Props) {
+  const list = spots ?? (CONFIG.HOTSPOTS as unknown as Hotspot[]);
   const ref = useRef<HTMLDivElement>(null)
   const viewer = useRef<Viewer | null>(null)
   const initialized = useRef(false)
@@ -32,7 +33,7 @@ export default function PanoViewer({ onOpen, onReady }: Props) {
     const pannellum = (window as Window & { pannellum?: { viewer: (el: HTMLDivElement, opts: Record<string, unknown>) => Viewer } }).pannellum
     if (!pannellum || !ref.current || initialized.current) return
     try {
-      viewer.current = pannellum.viewer(ref.current, { type: CONFIG.PANO.TYPE, panorama: CONFIG.PANO.SRC, autoLoad: true, showControls: false, draggable: true, keyboardZoom: true, mouseZoom: true, touchPanEnabled: true, friction: 0.15, compass: false, yaw: CONFIG.PANO.INITIAL_YAW, pitch: CONFIG.PANO.INITIAL_PITCH, hfov: CONFIG.PANO.INITIAL_HFOV, onLoad: resizeViewer, hotSpots: CONFIG.HOTSPOTS.map((spot) => ({ pitch: spot.pitch, yaw: spot.yaw, cssClass: 'atlas-hotspot', createTooltipFunc: (hotspot: HTMLElement) => { hotspot.setAttribute('aria-label', spot.label); hotspot.title = spot.label }, clickHandlerFunc: () => onOpen(spot) })) })
+      viewer.current = pannellum.viewer(ref.current, { type: CONFIG.PANO.TYPE, panorama: CONFIG.PANO.SRC, autoLoad: true, showControls: false, draggable: true, keyboardZoom: true, mouseZoom: true, touchPanEnabled: true, friction: 0.15, compass: false, yaw: CONFIG.PANO.INITIAL_YAW, pitch: CONFIG.PANO.INITIAL_PITCH, hfov: CONFIG.PANO.INITIAL_HFOV, onLoad: resizeViewer, hotSpots: list.map((spot) => ({ pitch: (spot as unknown as { pitch: number }).pitch, yaw: (spot as unknown as { yaw: number }).yaw, cssClass: 'atlas-hotspot', createTooltipFunc: (hotspot: HTMLElement) => { hotspot.setAttribute('aria-label', (spot as unknown as { label: string }).label); hotspot.title = (spot as unknown as { label: string }).label }, clickHandlerFunc: () => onOpen(spot) })) })
       initialized.current = true
       requestAnimationFrame(resizeViewer)
       resizeObserver.current = new ResizeObserver(resizeViewer)
